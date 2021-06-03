@@ -1,10 +1,10 @@
-
 class Todolist:
+
     def __init__(self):
         self.todolist = []
 
     def get_list(self):
-        print(self.todolist)
+        return self.todolist
 
     def add_to_list(self, task):
         self.todolist.append(task)
