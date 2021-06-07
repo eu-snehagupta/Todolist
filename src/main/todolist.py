@@ -43,11 +43,12 @@ class Todolist:
     def get_task_details_from_user(self):
         task_title = input("Enter the task title: ")
 
-        task_due_date = input("Enter the task due date: ")
+        task_due_date = input("Enter the task due date(dd/mm/yy): ")
         try:
             task_due_date = datetime.strptime(task_due_date, '%d/%m/%y')
         except:
-            print("Error")
+            print("Incorrect due date format.")
+            exit(0)
 
         task_status = input("Enter the task status (1) Done, (2) Undone: ")
         try:
@@ -60,6 +61,7 @@ class Todolist:
                 print("Incorrect choice")
         except ValueError:
             print("Invalid Input. Expecting an integer!")
+            exit(0)
 
         task_project = input("Enter the task project: ")
 

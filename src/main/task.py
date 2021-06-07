@@ -34,6 +34,6 @@ class Task:
     #     print(self.project)
 
     def to_string(self):
-        return "".join(self.title + "**" + self.due_date + "**" + self.status + "**" + self.project)
+        return "".join(self.title + "**" + str(self.due_date) + "**" + self.status + "**" + self.project)
 
 
