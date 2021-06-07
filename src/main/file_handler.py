@@ -1,16 +1,23 @@
-def read_to_file():
-    file = open("../resources/Todolist.txt", "r")
-    data = file.read()
+from task import Task
+
+
+def read_as_data():
+    task_list = []
+    try:
+        file = open("../resources/Todolist.txt", "r")
+        line = ""
+        while (line == file.readline()) is not None:
+            data = line.split("**")
+            task = Task(data[0], data[1], data[2], data[3])
+            task_list.append(task)
+        file.close()
+    except FileNotFoundError:
+        print("No Entries")
+    return task_list
+
+
+def write_as_data(entries):
+    file = open("../resources/Todolist.txt", "w")
+    for entry in entries:
+        file.write(entry.to_string() + "\n")
     file.close()
-    return data
-
-
-def write_to_file(input_string):
-    file = open("../resources/Todolist.txt", "a")
-    file.write(input_string + "\n")
-    file.close()
-
-
-if __name__ == "__main__":
-    print(read_to_file())
-    write_to_file("hi?")
