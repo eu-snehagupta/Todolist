@@ -8,8 +8,11 @@ def read_as_data():
         line = ""
         while (line == file.readline()) is not None:
             data = line.split("**")
-            task = Task(data[0], data[1], data[2], data[3])
-            task_list.append(task)
+            if data == ['']:
+                break
+            else:
+                task = Task(data[0], data[1], data[2], data[3])
+                task_list.append(task)
         file.close()
     except FileNotFoundError:
         print("No Entries")
