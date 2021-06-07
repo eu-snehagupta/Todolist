@@ -44,11 +44,8 @@ def display_option_details():
     print("(4) Save and Quit")
 
 
-def handle_option():
-    display_option_details()
-    option = input()
+def handle_option(option):
     try:
-        option = int(option)
         switch(option)
     except ValueError:
         print("Could not convert option to an integer.")
@@ -56,4 +53,6 @@ def handle_option():
 
 if __name__ == '__main__':
     display_welcome_message()
-    handle_option()
+    display_option_details()
+    input_option = input()
+    handle_option(input_option)
