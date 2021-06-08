@@ -4,7 +4,7 @@
 Building a text based user interface todolist application. 
 
 ## Concepts
-Include features for items(expense & Income):
+Include features for tasks:
 + Display the task (Sorting of task is pending)
 + Add the task (Validation of task details pending)
 + Edit or remove task (Pending)
