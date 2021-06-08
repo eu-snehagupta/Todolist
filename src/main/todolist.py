@@ -29,7 +29,7 @@ class Todolist:
     def print_list(self):
         todolist = self.get_list()
         if len(todolist) == 0:
-            print("The list is empty!")
+            print_statements("The list is empty!")
         else:
             for element in todolist:
                 print(element.title, element.due_date, element.status, element.project)
@@ -37,7 +37,7 @@ class Todolist:
     def add_task_to_list(self):
         new_task = self.get_task_details_from_user()
         self.add_to_list(new_task)
-        print("Task added successfully!")
+        print_statements("Task added successfully!")
         return self.todolist
 
     def get_task_details_from_user(self):
@@ -47,7 +47,7 @@ class Todolist:
         try:
             task_due_date = datetime.strptime(task_due_date, '%d/%m/%y')
         except:
-            print("Incorrect due date format.")
+            print_statements("Incorrect due date format.")
             exit(0)
 
         task_status = input("Enter the task status (1) Done, (2) Undone: ")
@@ -58,9 +58,9 @@ class Todolist:
             elif task_status == 2:
                 task_status = "Undone"
             else:
-                print("Incorrect choice")
+                print_statements("Incorrect choice")
         except ValueError:
-            print("Invalid Input. Expecting an integer!")
+            print_statements("Invalid Input. Expecting an integer!")
             exit(0)
 
         task_project = input("Enter the task project: ")
@@ -70,3 +70,7 @@ class Todolist:
 
     def save_quit(self):
         file_handler.write_as_data(self.todolist)
+
+
+def print_statements(statements):
+    print(statements)
