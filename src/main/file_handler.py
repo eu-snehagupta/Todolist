@@ -8,6 +8,7 @@ def read_as_data():
         entries = file.readlines()
         for entry in entries:
             data = entry.split("**")
+            data[3] = data[3].strip("\n")
             task = Task(data[0], data[1], data[2], data[3])
             task_list.append(task)
         file.close()
@@ -19,5 +20,5 @@ def read_as_data():
 def write_as_data(entries):
     file = open("../resources/Todolist.txt", "w")
     for entry in entries:
-        file.write(entry.to_string() +"\n")
+        file.write(entry.to_string())
     file.close()
