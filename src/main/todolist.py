@@ -27,11 +27,11 @@ class Todolist:
         self.todolist.remove(task)
 
     def print_list(self):
-        todolist = self.get_list()
-        if len(todolist) == 0:
+        task_list = self.todolist
+        if len(task_list) == 0:
             print_statements("The list is empty!")
         else:
-            for element in todolist:
+            for element in task_list:
                 print(element.title, element.due_date, element.status, element.project)
 
     def add_task_to_list(self):
@@ -41,32 +41,41 @@ class Todolist:
         return self.todolist
 
     def get_task_details_from_user(self):
-        task_title = input("Enter the task title: ")
+        task_title = self.get_task_title_from_user()
+        task_due_date = self.get_task_due_date_from_user()
+        task_status = self.get_task_status_from_user()
+        task_project = self.get_task_project_from_user()
+        task = Task(task_title, task_due_date, task_status, task_project)
+        return task
 
-        task_due_date = input("Enter the task due date(dd/mm/yy): ")
+    def get_task_title_from_user(self):
+        return input("Enter the task title: ")
+
+    def get_task_due_date_from_user(self):
+        task_due_date = input("Enter the task due date(dd/mm/yyyy): ")
         try:
-            task_due_date = datetime.strptime(task_due_date, '%d/%m/%y')
+            task_due_date = datetime.strptime(task_due_date, "%d/%m/%Y").date()
+            return task_due_date
         except:
-            print_statements("Incorrect due date format.")
-            exit(0)
+            print_statements("Incorrect due date format.\n Try Again!")
+            return self.get_task_due_date_from_user()
 
+    def get_task_status_from_user(self):
         task_status = input("Enter the task status (1) Done, (2) Undone: ")
         try:
             task_status = int(task_status)
             if task_status == 1:
-                task_status = "Done"
+                return "Done"
             elif task_status == 2:
-                task_status = "Undone"
+                return "Undone"
             else:
                 print_statements("Incorrect choice")
         except ValueError:
-            print_statements("Invalid Input. Expecting an integer!")
-            exit(0)
+            print_statements("Invalid Input. Expecting an integer! \n Try Again!")
+            return self.get_task_status_from_user()
 
-        task_project = input("Enter the task project: ")
-
-        task = Task(task_title, task_due_date, task_status, task_project)
-        return task
+    def get_task_project_from_user(self):
+        return input("Enter the task project: ")
 
     def save_quit(self):
         file_handler.write_as_data(self.todolist)
