@@ -28,30 +28,35 @@ def handle_choice(choice):
     try:
         choice = int(choice)
         select(choice)
-    except ValueError:
+    except ValueError:                  # handling situation where user input a choice other than an integer
         print_statement("Invalid Input. Expecting an integer!" + "\nTry again!")
         return display()
 
 
 def select(choice):
     if choice == 1:
-        to_do_list.print_list()
-        input("Enter any key to continue-->")
-        return display()
+        to_do_list.show_list()
+        ask_user_to_continue()
+        return display()                    # recalling display method until user choose save and quit.
     elif choice == 2:
         to_do_list.add_task_to_list()
-        input("Enter any key to continue-->")
+        ask_user_to_continue()
         return display()
     elif choice == 3:
-        print_statement("choice3")
-        input("Enter any key to continue-->")
+        print_statement("choice3")          # print_statement("choice3")  is a placeholder. the method is pending
+        ask_user_to_continue()
         return display()
     elif choice == 4:
         to_do_list.save_quit()
-        print_statement("File Saved! \nTack. Enjoy the day.")
+        print_statement("File Saved! \nEnjoy your day.")
         return
     else:
-        print_statement("Invalid choice!" + "\nTry again!")
+        print_statement("Invalid choice!" + "\nTry again!")   # handling the situation where user input
+                                                              # a choice other than the choice available
+
+
+def ask_user_to_continue():
+    return input("Enter any key to continue-->")        # hold the screen till user explicitly agrees to continue
 
 
 def print_statement(statement):

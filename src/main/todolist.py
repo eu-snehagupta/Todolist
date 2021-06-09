@@ -4,9 +4,9 @@ from task import Task
 
 
 class Todolist:
-
+    #############################################CRUD.METHODS##################################################################
     def __init__(self):
-        self.todolist = file_handler.read_as_data()
+        self.todolist = file_handler.read_as_data()         # updates the list from the resources/Todolist.txt file
 
     def get_list(self):
         return self.todolist
@@ -26,8 +26,9 @@ class Todolist:
     def remove_task_from_list(self, task):
         self.todolist.remove(task)
 
-    def print_list(self):
-        task_list = self.todolist
+    ################################################USER.METHODS###############################################################
+    def show_list(self):
+        task_list = self.get_list()
         if len(task_list) == 0:
             print_statements("The list is empty!")
         else:
@@ -55,8 +56,9 @@ class Todolist:
         task_due_date = input("Enter the task due date(dd/mm/yyyy): ")
         try:
             task_due_date = datetime.strptime(task_due_date, "%d/%m/%Y").date()
-            return task_due_date
-        except:
+            return task_due_date                # accepts the dates in the dd/mm/yyyy and
+                                                # saves it as yyyy-mm-dd
+        except ValueError:
             print_statements("Incorrect due date format.\n Try Again!")
             return self.get_task_due_date_from_user()
 
@@ -69,10 +71,12 @@ class Todolist:
             elif task_status == 2:
                 return "Undone"
             else:
-                print_statements("Incorrect choice")
+                print_statements("Invalid choice!" + "\nTry again!")    # handling the situation where user input
+                return self.get_task_status_from_user()                 # a choice other than the choice available
         except ValueError:
             print_statements("Invalid Input. Expecting an integer! \n Try Again!")
-            return self.get_task_status_from_user()
+            return self.get_task_status_from_user()          # handling situation where user input a
+                                                                # choice other than an integer
 
     def get_task_project_from_user(self):
         return input("Enter the task project: ")

@@ -35,5 +35,5 @@ class Task:
 
     def to_string(self):
         return "".join(self.title + "**" + str(self.due_date) + "**" + self.status + "**" + self.project + "\n")
-
+                                # appending \n so that each task is printed on each new line
 

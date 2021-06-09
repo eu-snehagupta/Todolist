@@ -1,3 +1,4 @@
 shopping**2020-12-12**Done**house
 cleaning**2020-12-12**Undone**house
 cooking**2020-12-12**Done**house
+decorating the tree**2020-12-24**Undone**christmas

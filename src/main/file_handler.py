@@ -8,12 +8,12 @@ def read_as_data():
         entries = file.readlines()
         for entry in entries:
             data = entry.split("**")
-            data[3] = data[3].strip("\n")
+            data[3] = data[3].strip("\n")                     # Removing \n which was tagged with the each entry
             task = Task(data[0], data[1], data[2], data[3])
             task_list.append(task)
         file.close()
     except FileNotFoundError:
-        print("No Entries")
+        print("No Entries")                         # In case the file does not exist
     return task_list
 
 
