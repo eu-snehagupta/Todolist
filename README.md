@@ -5,7 +5,7 @@ Building a text based user interface todolist application.
 
 ## Concepts
 Include features for tasks:
-+ Display the task (Sorting of task is pending)
++ Display the task (Sort by date, project)
 + Add the task
 + Edit or remove task
 + Save and quit
