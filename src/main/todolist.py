@@ -32,14 +32,42 @@ class Todolist:
         if len(task_list) == 0:
             print_statements("The list is empty!")
         else:
-            for element in task_list:
-                print(element.title, element.due_date, element.status, element.project)
+            for i in range(len(task_list)):
+                print(i, " : " +task_list[i].title, task_list[i].due_date, task_list[i].status, task_list[i].project)
 
-    def add_task_to_list(self):
+    def add_task(self):
         new_task = self.get_task_details_from_user()
         self.add_to_list(new_task)
         print_statements("Task added successfully!")
         return self.todolist
+
+    def edit_task(self, choice):
+        try:
+            choice = int(choice)
+            self.select_edit_choice(choice)
+        except ValueError:  # handling situation where user input a choice other than an integer
+            print_statements("Invalid Input. Expecting an integer!" + "\nTry again!")
+
+    def select_edit_choice(self, choice):
+        if choice == 1:
+            self.update_task()
+        elif choice == 2:
+            self.mark_as_done()
+        elif choice == 3:
+            self.remove_task()
+        else:
+            print_statements("Invalid choice!" + "\nTry again!")   # handling the situation where user input
+                                                              # a choice other than the choice available
+    def update_task(self):
+        self.show_list()
+        pass
+
+    def mark_as_done(self):
+        pass
+
+    def remove_task(self):
+        self.show_list()
+        pass
 
     def get_task_details_from_user(self):
         task_title = self.get_task_title_from_user()
@@ -80,6 +108,7 @@ class Todolist:
 
     def get_task_project_from_user(self):
         return input("Enter the task project: ")
+
 
     def save_quit(self):
         file_handler.write_as_data(self.todolist)

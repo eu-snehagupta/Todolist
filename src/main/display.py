@@ -39,11 +39,14 @@ def select(choice):
         ask_user_to_continue()
         return display()                    # recalling display method until user choose save and quit.
     elif choice == 2:
-        to_do_list.add_task_to_list()
+        to_do_list.add_task()
         ask_user_to_continue()
         return display()
     elif choice == 3:
-        print_statement("choice3")          # print_statement("choice3")  is a placeholder. the method is pending
+        print_statement("Pick an option:" + "\n(1) Update Task" +
+                         "\n(2) Mark As Done" + "\n(3) Remove Task")
+        choice = input()
+        to_do_list.edit_task(choice)
         ask_user_to_continue()
         return display()
     elif choice == 4:
