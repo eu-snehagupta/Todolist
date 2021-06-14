@@ -6,15 +6,15 @@ Building a text based user interface todolist application.
 ## Concepts
 Include features for tasks:
 + Display the task (Sorting of task is pending)
-+ Add the task (Validation of task details pending)
-+ Edit or remove task (Pending)
++ Add the task
++ Edit or remove task
 + Save and quit
 
 ## Getting Started
 + Prerequisites
 1. Clone the repo
-2. Install python(greater than verson3), pytest
-3. JUnit setup
+2. Install python(greater than verson3)
+3. Pytest setup
 
 ```bash
 git clone https://github.com/your_username_/Todolist.git
@@ -32,7 +32,7 @@ for mac user who has Homebrew can use this command.
 ## Usage
 Todolist is an application which allows a user to keep track of their's tasks. The user interact with a text-based user interface via the command-line.
 
-For more details, I will be posting the Documentation section(pending 😉 ).
+For more details, I will be posting the Documentation section (pending😉).
 
 ## Roadmap
 See the [open issues](https://github.com/eu-snehagupta/Todolist/issues) for a list of proposed features (and known issues).
