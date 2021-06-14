@@ -35,7 +35,7 @@ def handle_choice(choice):
 
 def select(choice):
     if choice == 1:
-        to_do_list.show_list()
+        show_task()
         ask_user_to_continue()
         return display()                    # recalling display method until user choose save and quit.
     elif choice == 2:
@@ -55,6 +55,66 @@ def select(choice):
                                                               # a choice other than the choice available
 
 
+def show_task():
+    display_show_choice_details()
+    choice = input()
+    handle_show_choice(choice)
+
+
+def display_show_choice_details():
+    print_statement("Pick an option:" + "\n(1) Show Task" +
+                    "\n(2) Sort Task")
+
+
+def handle_show_choice(choice):
+    try:
+        choice = int(choice)
+        select_show_choice(choice)
+    except ValueError:                  # handling situation where user input a choice other than an integer
+        print_statement("Invalid Input. Expecting an integer!" + "\nTry again!")
+        return show_task()
+
+
+def select_show_choice(choice):
+    if choice == 1:
+        to_do_list.show_task()
+    elif choice == 2:
+        sort_task()
+    else:
+        print_statement("Invalid choice!" + "\nTry again!")  # handling the situation where user input
+        return show_task()                                                   # a choice other than the choice available
+
+
+def sort_task():
+    display_sort_choice_details()
+    choice = input()
+    handle_sort_choice(choice)
+
+
+def display_sort_choice_details():
+    print_statement("Pick an option:" + "\n(1) Sort by Date" +
+                    "\n(2) Sort by Project")
+
+
+def handle_sort_choice(choice):
+    try:
+        choice = int(choice)
+        select_sort_choice(choice)
+    except ValueError:                  # handling situation where user input a choice other than an integer
+        print_statement("Invalid Input. Expecting an integer!" + "\nTry again!")
+        return sort_task()
+
+
+def select_sort_choice(choice):
+    if choice == 1:
+        to_do_list.sort_list_by_date()
+    elif choice == 2:
+        to_do_list.sort_list_by_project()
+    else:
+        print_statement("Invalid choice!" + "\nTry again!")  # handling the situation where user input
+        return sort_task()                                                   # a choice other than the choice available
+
+
 def edit_task():
     display_edit_choice_details()
     choice = input()
@@ -72,7 +132,7 @@ def handle_edit_choice(choice):
         select_edit_choice(choice)
     except ValueError:                  # handling situation where user input a choice other than an integer
         print_statement("Invalid Input. Expecting an integer!" + "\nTry again!")
-        return display_edit_choice_details()
+        return edit_task()
 
 
 def select_edit_choice(choice):

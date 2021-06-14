@@ -27,13 +27,24 @@ class Todolist:
         self.todolist.remove(task)
 
     ################################################USER.METHODS###############################################################
-    def show_list(self):
+
+    def show_task(self):
         task_list = self.get_list()
         if len(task_list) == 0:
             print_statements("The list is empty!")
         else:
             for i in range(len(task_list)):
                 print(i+1, " : " + task_list[i].title, task_list[i].due_date, task_list[i].status, task_list[i].project)
+
+    def sort_list_by_date(self):
+        task_list = self.get_list()
+        task_list.sort(key=lambda x: x.get_due_date())
+        self.show_task()
+
+    def sort_list_by_project(self):
+        task_list = self.get_list()
+        task_list.sort(key=lambda x: x.get_project())
+        self.show_task()
 
     def add_task(self):
         new_task = self.get_task_details_from_user()
@@ -65,7 +76,7 @@ class Todolist:
 
     def get_task_to_be_edited(self):
         task_list = self.get_list()
-        self.show_list()
+        self.show_task()
         task_index = self.select_task_to_be_edited()
         return task_list[task_index]
 
