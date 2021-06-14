@@ -5,7 +5,7 @@ to_do_list = Todolist()
 
 def display():
     display_welcome_message()
-    display_option_details()
+    display_choice_details()
     user_choice = input()
     handle_choice(user_choice)
 
@@ -16,7 +16,7 @@ def display_welcome_message():
           "\nYou have X tasks todo and Y tasks are done!")
 
 
-def display_option_details():
+def display_choice_details():
     print_statement("Pick an option:" +
           "\n(1) Show Task List (by date or project)" +
           "\n(2) Add New Task" +
@@ -43,10 +43,7 @@ def select(choice):
         ask_user_to_continue()
         return display()
     elif choice == 3:
-        print_statement("Pick an option:" + "\n(1) Update Task" +
-                         "\n(2) Mark As Done" + "\n(3) Remove Task")
-        choice = input()
-        to_do_list.edit_task(choice)
+        edit_task()
         ask_user_to_continue()
         return display()
     elif choice == 4:
@@ -56,6 +53,38 @@ def select(choice):
     else:
         print_statement("Invalid choice!" + "\nTry again!")   # handling the situation where user input
                                                               # a choice other than the choice available
+
+
+def edit_task():
+    display_edit_choice_details()
+    choice = input()
+    handle_edit_choice(choice)
+
+
+def display_edit_choice_details():
+    print_statement("Pick an option:" + "\n(1) Update Task" +
+                    "\n(2) Mark As Done" + "\n(3) Remove Task")
+
+
+def handle_edit_choice(choice):
+    try:
+        choice = int(choice)
+        select_edit_choice(choice)
+    except ValueError:                  # handling situation where user input a choice other than an integer
+        print_statement("Invalid Input. Expecting an integer!" + "\nTry again!")
+        return display_edit_choice_details()
+
+
+def select_edit_choice(choice):
+    if choice == 1:
+        to_do_list.update_task()
+    elif choice == 2:
+        to_do_list.mark_as_done()
+    elif choice == 3:
+        to_do_list.remove_task()
+    else:
+        print_statement("Invalid choice!" + "\nTry again!")  # handling the situation where user input
+        return edit_task()                                                   # a choice other than the choice available
 
 
 def ask_user_to_continue():

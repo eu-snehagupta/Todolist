@@ -33,7 +33,7 @@ class Todolist:
             print_statements("The list is empty!")
         else:
             for i in range(len(task_list)):
-                print(i, " : " +task_list[i].title, task_list[i].due_date, task_list[i].status, task_list[i].project)
+                print(i+1, " : " + task_list[i].title, task_list[i].due_date, task_list[i].status, task_list[i].project)
 
     def add_task(self):
         new_task = self.get_task_details_from_user()
@@ -41,33 +41,54 @@ class Todolist:
         print_statements("Task added successfully!")
         return self.todolist
 
-    def edit_task(self, choice):
-        try:
-            choice = int(choice)
-            self.select_edit_choice(choice)
-        except ValueError:  # handling situation where user input a choice other than an integer
-            print_statements("Invalid Input. Expecting an integer!" + "\nTry again!")
-
-    def select_edit_choice(self, choice):
-        if choice == 1:
-            self.update_task()
-        elif choice == 2:
-            self.mark_as_done()
-        elif choice == 3:
-            self.remove_task()
-        else:
-            print_statements("Invalid choice!" + "\nTry again!")   # handling the situation where user input
-                                                              # a choice other than the choice available
     def update_task(self):
+        task_list = self.get_list()
         self.show_list()
-        pass
+        task_index = self.select_task_to_be_edited()
+        old_task = task_list[task_index]
+        new_task = self.get_task_details_from_user()
+        self.update_list(old_task, new_task)
+        print_statements("Task updated successfully!")
+        return self.todolist
+
 
     def mark_as_done(self):
-        pass
+        task_list = self.get_list()
+        self.show_list()
+        task_index = self.select_task_to_be_edited()
+        task_to_mark_as_done = task_list[task_index]
+        if task_to_mark_as_done.status == "Done":
+            print_statements("Task is already under status done!")
+        else:
+            task_to_mark_as_done.status = "Done"
+            print_statements("Task updated as done successfully!")
+        return self.todolist
 
     def remove_task(self):
+        task_list = self.get_list()
         self.show_list()
-        pass
+        task_index = self.select_task_to_be_edited()
+        task_to_remove = task_list[task_index]
+        self.remove_task_from_list(task_to_remove)
+        print_statements("Task removed successfully!")
+        return self.todolist
+
+    def select_task_to_be_edited(self):
+        task_number = input("Enter the task number to be edited: ")
+        try:
+            task_number = int(task_number)
+            return self.fetch_task(task_number)
+        except ValueError:  # handling situation where user input a choice other than an integer
+            print_statements("Invalid Input. Expecting an integer!" + "\nTry again!")
+            return self.select_task_to_be_edited()
+
+    def fetch_task(self, index):
+        task_list = self.get_list()
+        if 0 < index < len(task_list)+1:
+            return index - 1
+        else:
+            print_statements("Invalid choice!" + "\nTry again!")  # handling the situation where user input
+            return self.select_task_to_be_edited()                              # a choice other than the choice available
 
     def get_task_details_from_user(self):
         task_title = self.get_task_title_from_user()
