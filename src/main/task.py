@@ -16,22 +16,22 @@ class Task:
 
     def get_project(self):
         return self.project
-    #
-    # def set_title(self, new_title):
-    #     self.title = new_title
-    #     print(self.title)
-    #
-    # def set_due_date(self, new_due_date):
-    #     self.due_date = new_due_date
-    #     print(self.due_date)
-    #
-    # def set_status(self, new_status):
-    #     self.status = new_status
-    #     print(self.status)
-    #
-    # def set_project(self, new_project):
-    #     self.project = new_project
-    #     print(self.project)
+
+    def set_title(self, new_title):
+        self.title = new_title
+        print(self.title)
+
+    def set_due_date(self, new_due_date):
+        self.due_date = new_due_date
+        print(self.due_date)
+
+    def set_status(self, new_status):
+        self.status = new_status
+        print(self.status)
+
+    def set_project(self, new_project):
+        self.project = new_project
+        print(self.project)
 
     def to_string(self):
         return "".join(self.title + "**" + str(self.due_date) + "**" + self.status + "**" + self.project + "\n")

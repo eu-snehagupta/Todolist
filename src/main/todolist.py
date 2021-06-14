@@ -42,36 +42,32 @@ class Todolist:
         return self.todolist
 
     def update_task(self):
-        task_list = self.get_list()
-        self.show_list()
-        task_index = self.select_task_to_be_edited()
-        old_task = task_list[task_index]
+        old_task = self.get_task_to_be_edited()
         new_task = self.get_task_details_from_user()
         self.update_list(old_task, new_task)
         print_statements("Task updated successfully!")
         return self.todolist
 
-
     def mark_as_done(self):
-        task_list = self.get_list()
-        self.show_list()
-        task_index = self.select_task_to_be_edited()
-        task_to_mark_as_done = task_list[task_index]
+        task_to_mark_as_done = self.get_task_to_be_edited()
         if task_to_mark_as_done.status == "Done":
-            print_statements("Task is already under status done!")
+            print_statements("Task is already under status as done!")
         else:
             task_to_mark_as_done.status = "Done"
             print_statements("Task updated as done successfully!")
         return self.todolist
 
     def remove_task(self):
-        task_list = self.get_list()
-        self.show_list()
-        task_index = self.select_task_to_be_edited()
-        task_to_remove = task_list[task_index]
+        task_to_remove = self.get_task_to_be_edited()
         self.remove_task_from_list(task_to_remove)
         print_statements("Task removed successfully!")
         return self.todolist
+
+    def get_task_to_be_edited(self):
+        task_list = self.get_list()
+        self.show_list()
+        task_index = self.select_task_to_be_edited()
+        return task_list[task_index]
 
     def select_task_to_be_edited(self):
         task_number = input("Enter the task number to be edited: ")
